@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Premium Form</title>
+
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b, #020617);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Glass effect form */
+form {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  padding: 25px;
+  border-radius: 15px;
+  width: 320px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  animation: fadeIn 0.8s ease;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.05);
+  color: white;
+  outline: none;
+  transition: 0.3s;
+}
+
+/* Focus glow */
+input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(45deg, #22c55e, #4ade80);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #22c55e;
+}
+
+/* Error & Success */
+.error {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 10px #ef4444;
+  animation: shake 0.4s;
+}
+
+.success {
+  border-color: #22c55e !important;
+  box-shadow: 0 0 10px #22c55e;
+}
+
+/* Messages */
+small {
+  color: #ef4444;
+  font-size: 12px;
+  display: none;
+  margin-top: -5px;
+}
+
+/* Animations */
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+
+</head>
+<body>
+
+<form id="myForm">
+  <h2>✨ Register</h2>
+
+  <input type="text" id="name" placeholder="Full Name">
+  <small id="nameError">Name is required</small>
+
+  <input type="email" id="email" placeholder="Email">
+  <small id="emailError">Enter valid email</small>
+
+  <input type="password" id="password" placeholder="Password">
+  <small id="passError">Minimum 6 characters</small>
+
+  <input type="password" id="confirm" placeholder="Confirm Password">
+  <small id="confirmError">Passwords do not match</small>
+
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+const form = document.getElementById("myForm");
+
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const confirmInput = document.getElementById("confirm");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  let valid = true;
+
+  if (nameInput.value.trim() === "") {
+    showError(nameInput, "nameError");
+    valid = false;
+  } else showSuccess(nameInput, "nameError");
+
+  if (!validateEmail(emailInput.value)) {
+    showError(emailInput, "emailError");
+    valid = false;
+  } else showSuccess(emailInput, "emailError");
+
+  if (passwordInput.value.length < 6) {
+    showError(passwordInput, "passError");
+    valid = false;
+  } else showSuccess(passwordInput, "passError");
+
+  if (confirmInput.value !== passwordInput.value || confirmInput.value === "") {
+    showError(confirmInput, "confirmError");
+    valid = false;
+  } else showSuccess(confirmInput, "confirmError");
+
+  if (valid) {
+    alert("Form Submitted Successfully 🎉");
+    form.reset();
+  }
+});
+
+function showError(input, id) {
+  input.classList.add("error");
+  input.classList.remove("success");
+  document.getElementById(id).style.display = "block";
+}
+
+function showSuccess(input, id) {
+  input.classList.remove("error");
+  input.classList.add("success");
+  document.getElementById(id).style.display = "none";
+}
+
+function validateEmail(email) {
+  return /^[^ ]+@[^ ]+\.[a-z]{2,3}$/.test(email);
+}
+
+/* Real-time reset */
+[nameInput, emailInput, passwordInput, confirmInput].forEach(input => {
+  input.addEventListener("input", () => {
+    input.classList.remove("error");
+    document.querySelectorAll("small").forEach(s => s.style.display = "none");
+  });
+});
+</script>
+
+</body>
+</html>
