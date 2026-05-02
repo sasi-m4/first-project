@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Animated To-Do List</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 20px;
+}
+
+input {
+  padding: 10px;
+  width: 250px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+.add-btn { background: #22c55e; color: white; }
+.delete { background: #ef4444; color: white; }
+.complete { background: #3b82f6; color: white; }
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.box {
+  width: 40%;
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #334155;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  /* Animation base */
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.4s ease;
+}
+
+/* Add animation */
+li.adding {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+/* Remove animation */
+li.removing {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+/* Completed style */
+.done {
+  text-decoration: line-through;
+  color: #94a3b8;
+}
+
+small {
+  display: block;
+  font-size: 10px;
+  color: #cbd5f5;
+}
+</style>
+
+</head>
+<body>
+
+<h1>✨ Animated To-Do List</h1>
+
+<input type="text" id="taskInput" placeholder="Enter a task">
+<button class="add-btn" onclick="addTask()">Add</button>
+
+<div class="container">
+  <div class="box">
+    <h2>📝 To-Do</h2>
+    <ul id="todoList"></ul>
+  </div>
+
+  <div class="box">
+    <h2>✅ Finished</h2>
+    <ul id="doneList"></ul>
+  </div>
+</div>
+
+<script>
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
+let done = JSON.parse(localStorage.getItem("done")) || [];
+
+function saveData() {
+  localStorage.setItem("todos", JSON.stringify(todos));
+  localStorage.setItem("done", JSON.stringify(done));
+}
+
+function render() {
+  const todoList = document.getElementById("todoList");
+  const doneList = document.getElementById("doneList");
+
+  todoList.innerHTML = "";
+  doneList.innerHTML = "";
+
+  todos.forEach((task, index) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <span>${task}</span>
+      <div>
+        <button class="complete" onclick="completeTask(${index}, this)">✔</button>
+        <button class="delete" onclick="deleteTask(${index}, this)">✖</button>
+      </div>
+    `;
+    todoList.appendChild(li);
+  });
+
+  done.forEach((task, index) => {
+    const li = document.createElement("li");
+    li.classList.add("done");
+    li.innerHTML = `
+      <div>
+        <span>${task.text}</span>
+        <small>Finished: ${task.time}</small>
+      </div>
+      <button class="delete" onclick="deleteDone(${index}, this)">✖</button>
+    `;
+    doneList.appendChild(li);
+  });
+}
+
+function addTask() {
+  const input = document.getElementById("taskInput");
+  const text = input.value.trim();
+  if (!text) return;
+
+  todos.push(text);
+  saveData();
+  render();
+
+  // Animation for last item
+  setTimeout(() => {
+    const list = document.getElementById("todoList");
+    const li = list.lastChild;
+    li.classList.add("adding");
+    setTimeout(() => li.classList.remove("adding"), 10);
+  }, 0);
+
+  input.value = "";
+}
+
+function completeTask(index, btn) {
+  const li = btn.closest("li");
+
+  li.classList.add("removing");
+
+  setTimeout(() => {
+    const time = new Date().toLocaleString();
+    done.push({ text: todos[index], time });
+    todos.splice(index, 1);
+    saveData();
+    render();
+  }, 300);
+}
+
+function deleteTask(index, btn) {
+  const li = btn.closest("li");
+  li.classList.add("removing");
+
+  setTimeout(() => {
+    todos.splice(index, 1);
+    saveData();
+    render();
+  }, 300);
+}
+
+function deleteDone(index, btn) {
+  const li = btn.closest("li");
+  li.classList.add("removing");
+
+  setTimeout(() => {
+    done.splice(index, 1);
+    saveData();
+    render();
+  }, 300);
+}
+
+/* 🔥 ENTER KEY SUPPORT */
+document.getElementById("taskInput").addEventListener("keypress", function(e) {
+  if (e.key === "Enter") {
+    addTask();
+  }
+});
+
+render();
+</script>
+
+</body>
+</html>
