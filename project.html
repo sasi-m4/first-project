@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Arunachalam Engineering</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:#0f0f0f;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    /* HERO SECTION */
+
+    .hero{
+      height:100vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
+      url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=1600&auto=format&fit=crop');
+
+      background-size:cover;
+      background-position:center;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+
+      padding:20px;
+    }
+
+    .hero h1{
+      font-size:70px;
+      font-weight:700;
+    }
+
+    .hero p{
+      font-size:22px;
+      color:#ddd;
+      margin-top:20px;
+    }
+
+    .custom-btn{
+      padding:14px 30px;
+      border-radius:14px;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .custom-btn:hover{
+      transform:scale(1.05);
+    }
+
+    .section-title{
+      font-size:45px;
+      font-weight:700;
+      margin-bottom:20px;
+    }
+
+    /* ABOUT */
+
+    .about{
+      background:#171717;
+    }
+
+    /* GALLERY */
+
+    .gallery-card{
+      background:#1e1e1e;
+      border-radius:20px;
+      overflow:hidden;
+      transition:0.3s;
+      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .gallery-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .gallery-card img{
+      height:280px;
+      object-fit:cover;
+    }
+
+    .future-box{
+      height:370px;
+      border:2px dashed #666;
+      border-radius:20px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      color:#777;
+      font-size:24px;
+    }
+
+    /* REVIEW */
+
+    .review-section{
+      background:#171717;
+    }
+
+    .review-box{
+      background:#242424;
+      padding:30px;
+      border-radius:20px;
+      height:100%;
+    }
+
+    /* VISITOR */
+
+    .visitor-box{
+      background:#222;
+      padding:12px 25px;
+      border-radius:15px;
+      font-size:20px;
+    }
+
+    /* CONTACT */
+
+    .contact-box{
+      background:#181818;
+      border-radius:30px;
+      padding:60px 30px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    footer{
+      border-top:1px solid #333;
+      color:#aaa;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:768px){
+
+      .hero h1{
+        font-size:42px;
+      }
+
+      .hero p{
+        font-size:18px;
+      }
+
+      .section-title{
+        font-size:35px;
+      }
+
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div>
+
+      <h1>Arunachalam Engineering</h1>
+
+      <p>
+        Professional Welding • Metal Works • Fabrication • Engineering Solutions
+      </p>
+
+      <div class="mt-5 d-flex gap-3 justify-content-center flex-wrap">
+
+        <a href="tel:9094526265" class="btn btn-light custom-btn">
+          📞 Call Now
+        </a>
+
+        <a href="https://wa.me/919094526265"
+           target="_blank"
+           class="btn btn-success custom-btn">
+          WhatsApp
+        </a>
+
+        <a href="mailto:arunachalamwelder@gmail.com"
+           class="btn btn-outline-light custom-btn">
+          Email
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section class="about py-5">
+
+    <div class="container py-5">
+
+      <div class="row align-items-center g-5">
+
+        <div class="col-lg-6">
+
+          <h2 class="section-title">
+            About Us
+          </h2>
+
+          <p class="text-light-emphasis fs-5 lh-lg">
+
+            Arunachalam Engineering provides high-quality welding,
+            fabrication, metal works, and engineering services with
+            professional finishing and customer satisfaction.
+
+            We do all types of steel and metal-related works professionally.
+
+          </p>
+
+          <div class="mt-4 fs-5">
+
+            <p>📞 9094526265</p>
+
+            <p>✉️ arunachalamwelder@gmail.com</p>
+
+          </div>
+
+        </div>
+
+        <div class="col-lg-6">
+
+          <img
+            src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop"
+            class="img-fluid rounded-5 shadow"
+          >
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- GALLERY -->
+
+  <section class="py-5">
+
+    <div class="container py-5">
+
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-5">
+
+        <div>
+
+          <h2 class="section-title mb-2">
+            Finished Works
+          </h2>
+
+          <p class="text-secondary">
+            Professional engineering project gallery.
+          </p>
+
+        </div>
+
+        <div class="visitor-box">
+
+          👀 Visitors:
+          <span id="visitor-count">1200</span>
+
+        </div>
+
+      </div>
+
+      <div class="row g-4">
+
+        <!-- CARD 1 -->
+
+        <div class="col-md-4">
+
+          <div class="gallery-card">
+
+            <img
+              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200&auto=format&fit=crop"
+              class="w-100"
+            >
+
+            <div class="p-4">
+
+              <h4>Metal Gate Fabrication</h4>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- CARD 2 -->
+
+        <div class="col-md-4">
+
+          <div class="gallery-card">
+
+            <img
+              src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200&auto=format&fit=crop"
+              class="w-100"
+            >
+
+            <div class="p-4">
+
+              <h4>Industrial Welding</h4>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- CARD 3 -->
+
+        <div class="col-md-4">
+
+          <div class="gallery-card">
+
+            <img
+              src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop"
+              class="w-100"
+            >
+
+            <div class="p-4">
+
+              <h4>Custom Steel Design</h4>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- FUTURE IMAGE BOX -->
+
+        <div class="col-md-4">
+
+          <div class="future-box">
+
+            + Add Future Photos
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- REVIEWS -->
+
+  <section class="review-section py-5">
+
+    <div class="container py-5 text-center">
+
+      <h2 class="section-title">
+        Customer Reviews
+      </h2>
+
+      <h1 class="display-2 mb-3">
+        ⭐ 4.9 / 5
+      </h1>
+
+      <p class="text-secondary fs-5 mb-5">
+        Trusted by customers for quality engineering work.
+      </p>
+
+      <div class="row g-4">
+
+        <div class="col-md-4">
+
+          <div class="review-box text-start">
+
+            <h3>★★★★★</h3>
+
+            <p class="mt-3 text-light-emphasis">
+
+              Excellent welding work and strong finishing quality.
+
+            </p>
+
+            <h5>- Kumar</h5>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+          <div class="review-box text-start">
+
+            <h3>★★★★★</h3>
+
+            <p class="mt-3 text-light-emphasis">
+
+              Very professional service and completed on time.
+
+            </p>
+
+            <h5>- Prakash</h5>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+          <div class="review-box text-start">
+
+            <h3>★★★★★</h3>
+
+            <p class="mt-3 text-light-emphasis">
+
+              Best engineering and fabrication service.
+
+            </p>
+
+            <h5>- Suresh</h5>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <button class="btn btn-light custom-btn mt-5">
+        Leave a Review
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section class="py-5">
+
+    <div class="container py-5">
+
+      <div class="contact-box text-center">
+
+        <h2 class="section-title">
+          Contact Us
+        </h2>
+
+        <p class="text-light-emphasis fs-5 mb-5">
+
+          Contact us for welding, fabrication,
+          and all metal-related works.
+
+        </p>
+
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+          <a href="tel:9094526265"
+             class="btn btn-light custom-btn">
+
+             📞 Call
+
+          </a>
+
+          <a href="https://wa.me/919094526265"
+             target="_blank"
+             class="btn btn-success custom-btn">
+
+             WhatsApp
+
+          </a>
+
+          <a href="mailto:arunachalamwelder@gmail.com"
+             class="btn btn-outline-light custom-btn">
+
+             Email
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer class="text-center py-4">
+
+    <p>
+      © 2026 Arunachalam Engineering. All Rights Reserved.
+    </p>
+
+  </footer>
+
+  <!-- VISITOR COUNTER -->
+
+  <script>
+
+    let count = localStorage.getItem("visitorCount");
+
+    if(count == null){
+      count = 1200;
+    }else{
+      count = parseInt(count) + 1;
+    }
+
+    localStorage.setItem("visitorCount", count);
+
+    document.getElementById("visitor-count").innerText = count;
+
+  </script>
+
+</body>
+</html>
