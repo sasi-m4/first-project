@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sasi | AI Portfolio</title>
+
+  <!-- Bootstrap -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root{
+      --bg1:#060816;
+      --bg2:#0b1023;
+      --glass:rgba(255,255,255,.08);
+      --border:rgba(255,255,255,.15);
+      --gold:#ffd700;
+      --cyan:#5de4ff;
+      --pink:#ff4fd8;
+      --text:#f5f5f5;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:"Poppins",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left,#25104a 0%,transparent 30%),
+        radial-gradient(circle at bottom right,#003566 0%,transparent 30%),
+        linear-gradient(135deg,var(--bg1),var(--bg2));
+      overflow-x:hidden;
+    }
+
+    /* =========================
+       SCROLLBAR
+    ========================== */
+    ::-webkit-scrollbar{
+      width:8px;
+    }
+
+    ::-webkit-scrollbar-thumb{
+      background:linear-gradient(var(--gold),orange);
+      border-radius:20px;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================== */
+    .navbar{
+      background:rgba(0,0,0,.25);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .navbar-brand{
+      color:var(--gold)!important;
+      font-size:1.4rem;
+      font-weight:700;
+      letter-spacing:3px;
+    }
+
+    .nav-link{
+      color:#ddd!important;
+      transition:.3s;
+    }
+
+    .nav-link:hover{
+      color:var(--gold)!important;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+    .hero{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+      padding:20px;
+    }
+
+    /* Animated glowing circles */
+    .hero::before,
+    .hero::after{
+      content:"";
+      position:absolute;
+      width:350px;
+      height:350px;
+      border-radius:50%;
+      filter:blur(80px);
+      opacity:.35;
+      animation:float 6s ease-in-out infinite alternate;
+    }
+
+    .hero::before{
+      background:var(--pink);
+      top:-80px;
+      left:-100px;
+    }
+
+    .hero::after{
+      background:var(--cyan);
+      bottom:-80px;
+      right:-100px;
+      animation-delay:2s;
+    }
+
+    @keyframes float{
+      from{
+        transform:translateY(0) scale(1);
+      }
+      to{
+        transform:translateY(40px) scale(1.1);
+      }
+    }
+
+    .hero-content{
+      z-index:2;
+      animation:fadeUp 1s ease;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    .hero h1{
+      font-size:clamp(3rem,8vw,5rem);
+      font-weight:700;
+      margin-bottom:10px;
+    }
+
+    .gradient-text{
+      background:linear-gradient(
+        90deg,
+        var(--gold),
+        var(--pink),
+        var(--cyan)
+      );
+      background-size:200%;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:shine 4s linear infinite;
+    }
+
+    @keyframes shine{
+      to{
+        background-position:200%;
+      }
+    }
+
+    #typing{
+      min-height:40px;
+      color:var(--cyan);
+      font-weight:500;
+      margin-top:10px;
+    }
+
+    .hero p{
+      color:#cfcfcf;
+      margin-top:15px;
+    }
+
+    /* =========================
+       BUTTON
+    ========================== */
+    .btn-gold{
+      margin-top:20px;
+      padding:12px 28px;
+      border:none;
+      border-radius:50px;
+      font-weight:600;
+      background:linear-gradient(45deg,var(--gold),orange);
+      color:#111;
+      transition:.35s ease;
+      box-shadow:0 0 18px rgba(255,215,0,.25);
+    }
+
+    .btn-gold:hover{
+      transform:translateY(-4px);
+      box-shadow:0 0 25px rgba(255,215,0,.55);
+    }
+
+    /* =========================
+       SECTION
+    ========================== */
+    section{
+      padding:90px 20px;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:50px;
+      font-size:2.2rem;
+      font-weight:700;
+    }
+
+    /* =========================
+       GLASS CARD
+    ========================== */
+    .glass-card{
+      background:var(--glass);
+      border:1px solid var(--border);
+      border-radius:20px;
+      backdrop-filter:blur(12px);
+      padding:30px 20px;
+      height:100%;
+      transition:.35s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .glass-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.08),
+        transparent
+      );
+      transform:translateX(-100%);
+      transition:.7s;
+    }
+
+    .glass-card:hover::before{
+      transform:translateX(100%);
+    }
+
+    .glass-card:hover{
+      transform:translateY(-10px);
+      border-color:rgba(255,215,0,.35);
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+
+    .skill{
+      font-weight:600;
+      font-size:1rem;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+    footer{
+      border-top:1px solid rgba(255,255,255,.08);
+      padding:25px;
+      text-align:center;
+      color:#bbb;
+      background:rgba(0,0,0,.2);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+    @media(max-width:768px){
+      .hero h1{
+        font-size:3rem;
+      }
+
+      .section-title{
+        font-size:1.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">SASI</a>
+
+      <button
+        class="navbar-toggler bg-light"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#menu"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="gradient-text">Hi, I'm Sasi</h1>
+
+      <h3 id="typing"></h3>
+
+      <p>
+        B.Tech AI & Data Science • AI Engineer • Full Stack Developer
+      </p>
+
+      <a href="#contact" class="btn btn-gold">
+        Contact Me
+      </a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title gradient-text">About Me</h2>
+
+      <div class="glass-card text-center">
+        <p class="mb-0">
+          I build modern AI-powered applications, intelligent systems,
+          and responsive web experiences with clean UI and scalable architecture.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title gradient-text">Skills</h2>
+
+      <div class="row g-4">
+
+        <div class="col-6 col-md-3">
+          <div class="glass-card text-center">
+            <div class="skill">Python</div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <div class="glass-card text-center">
+            <div class="skill">Machine Learning</div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <div class="glass-card text-center">
+            <div class="skill">Web Development</div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <div class="glass-card text-center">
+            <div class="skill">Data Science</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title gradient-text">Projects</h2>
+
+      <div class="row g-4">
+
+        <div class="col-md-4">
+          <div class="glass-card">
+            <h4>AI Project</h4>
+            <p>
+              Machine learning based intelligent solution with predictive analytics.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="glass-card">
+            <h4>Web App</h4>
+            <p>
+              Modern responsive full-stack application with smooth UI/UX.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="glass-card">
+            <h4>Data Analysis</h4>
+            <p>
+              Insightful analytics dashboards and visualization systems.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container text-center">
+      <h2 class="section-title gradient-text">Contact</h2>
+
+      <div class="glass-card">
+        <p>Email: sasi.official.m4@email.com</p>
+
+        <button class="btn btn-gold">
+          Say Hello
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Sasi • AI Portfolio
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Typing Effect -->
+  <script>
+    const roles = [
+      "AI Developer",
+      "Data Scientist",
+      "Full Stack Developer",
+      "Machine Learning Engineer"
+    ];
+
+    const typing = document.getElementById("typing");
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function typeEffect() {
+      const current = roles[wordIndex];
+
+      typing.textContent = deleting
+        ? current.substring(0, charIndex--)
+        : current.substring(0, charIndex++);
+
+      if (!deleting && charIndex === current.length + 1) {
+        deleting = true;
+        setTimeout(typeEffect, 1200);
+        return;
+      }
+
+      if (deleting && charIndex === 0) {
+        deleting = false;
+        wordIndex = (wordIndex + 1) % roles.length;
+      }
+
+      setTimeout(typeEffect, deleting ? 50 : 100);
+    }
+
+    typeEffect();
+  </script>
+
+</body>
+</html>
